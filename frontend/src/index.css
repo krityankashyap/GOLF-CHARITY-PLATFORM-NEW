@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 150 28% 6%;
+    --foreground: 0 0% 98%;
+    --card: 150 25% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 150 25% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 43 65% 47%;
+    --primary-foreground: 150 28% 6%;
+    --secondary: 150 22% 16%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 150 20% 14%;
+    --muted-foreground: 0 0% 63%;
+    --accent: 43 65% 47%;
+    --accent-foreground: 150 28% 6%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 150 20% 18%;
+    --input: 150 20% 16%;
+    --ring: 43 65% 47%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+@layer components {
+  .gold-text {
+    @apply text-gold-500;
+  }
+
+  .glass-card {
+    @apply bg-forest-800/50 backdrop-blur-sm border border-forest-700/50 rounded-xl;
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #c9a227, #d4af37, #b8911f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-glow {
+    box-shadow: 0 0 80px rgba(201, 162, 39, 0.15), 0 0 40px rgba(201, 162, 39, 0.1);
+  }
+
+  .input-dark {
+    @apply bg-forest-900/80 border border-forest-700 text-white placeholder:text-gray-500 focus:border-gold-500 focus:ring-1 focus:ring-gold-500/50 rounded-lg px-4 py-2.5 transition-all duration-200;
+  }
+
+  .btn-gold {
+    @apply bg-gold-500 hover:bg-gold-400 text-forest-900 font-semibold px-6 py-2.5 rounded-lg transition-all duration-200 shadow-lg hover:shadow-gold-500/25;
+  }
+
+  .btn-outline-gold {
+    @apply border border-gold-500 text-gold-500 hover:bg-gold-500/10 font-semibold px-6 py-2.5 rounded-lg transition-all duration-200;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d2018;
+}
+::-webkit-scrollbar-thumb {
+  background: #2d6647;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9a227;
+}
+
+/* Selection */
+::selection {
+  background: rgba(201, 162, 39, 0.3);
+  color: white;
+}
