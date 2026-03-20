@@ -17,9 +17,23 @@ connectDB();
 app.use(helmet());
 
 // CORS
+const allowedOrigins = serverConfig.FRONTEND_URL
+  ? serverConfig.FRONTEND_URL.split(',').map((o) => o.trim())
+  : ['http://localhost:5173'];
+
 app.use(
   cors({
-    origin: serverConfig.FRONTEND_URL,
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const isAllowed =
+        allowedOrigins.includes(origin) ||
+        /^https:\/\/golf-charity-platform-new[a-z0-9-]*\.vercel\.app$/.test(origin);
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS: origin ${origin} not allowed`));
+      }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
